@@ -1,0 +1,36 @@
+<main>
+
+    <div class="container-fluid">
+
+    <div class="row">
+        <div class="col-6 offset-3">
+            <div class="card">
+
+                <h4 class="card-header bg-dark text-white">{{#if editMode}} Edit Types {{else}} Create new Types {{/if}}</h4>
+                <div class="card-body">
+
+                    <form method="POST" action="{{#if editMode}}/edit-types{{else}}/create-types{{/if}}">
+
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Name: </label>
+                            <input required type="text" id="name" name="name" class="form-control" value="{{#if editMode}}{{types.name}}{{/if}}"/>
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+
+                        {{#if editMode}} 
+                            <input type="hidden" name="TypesId" value="{{types.id}}"/>
+                        {{/if}}
+
+                        <button type="submit" class="btn btn-outline-primary">{{#if editMode}}Update{{else}}Save{{/if}}</button>
+                        <a href="/types" class="btn btn-outline-warning">Back</a>
+
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</main>

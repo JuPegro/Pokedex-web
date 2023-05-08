@@ -1,0 +1,34 @@
+<main>
+    <div class="container-fluid">
+
+        <div class="row mb-3">
+            <div class="col-3">
+                <a href="/create-regions" class="btn btn-outline-success">Create a new region</a>
+            </div>
+        </div>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            {{#if hasRegion}}
+                {{#each regions as |Region|}}
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            <div class="card-body">
+                                <h3>{{Region.name}}</h3>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="">
+                                        <a href="/edit-regions/{{Region.id}}?edit=true" class="btn btn-sm btn-outline-primary">Edit</a>
+                                        <form class="form-inline" id="form-region" method="POST" action="/delete-regions">
+                                            <input type="hidden" name="regionId" value="{{Region.id}}">
+                                            <button type="submit" id="delete-region" class="btn btn-sm btn-outline-danger">Delete</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                {{/each}}
+            {{else}}
+                <h2>NO REGIONS ADDED</h2>
+            {{/if}}
+        </div>
+    </div>
+</main>

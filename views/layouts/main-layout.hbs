@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>{{pageTitle}}</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/lib/bootstrap.min.css">
+</head>
+<body>
+	<header class="mb-5">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+      <div class="container-fluid offset-1">
+        <a class="navbar-brand" href="/">Pókedex</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarCollapse"
+          aria-controls="navbarCollapse"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav me-auto mb-2 mb-md-0">
+            <li class="nav-item">
+              <a class="nav-link {{#if HomeActive}}active{{/if}}" aria-current="page" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {{#if pokemonActive}}active{{/if}}" href="/pokemon">Pokemons</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {{#if RegionActive}}active{{/if}}" href="/regions">Regions</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {{#if TypesActive}}active{{/if}}" href="/types">Types of pokemon</a>
+            </li>        
+          </ul>
+        </div>
+      </div>
+    </nav>
+    </header>
+    <main class="mt-1 offset-1 col-md-10 mb-5">
+        {{{body}}}
+    </main>
+
+    <script src="/assets/js/lib/bootstrap.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script>
+    
+
+    <footer class="border-top mt-5 footer bg-white text-center">
+        <div class="container">
+            &copy; 2022 - Social Network - <a href="https://github.com/JuPegro" target="_blank">JuPegro</a>
+        </div>
+    </footer>
+</body>
+</html>

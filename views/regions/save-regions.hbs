@@ -1,0 +1,36 @@
+<main>
+
+    <div class="container-fluid">
+
+    <div class="row">
+        <div class="col-6 offset-3">
+            <div class="card">
+
+                <h4 class="card-header bg-dark text-white">{{#if editMode}} Edit Region {{else}} Create new Region {{/if}}</h4>
+                <div class="card-body">
+
+                    <form method="POST" action="{{#if editMode}}/edit-regions{{else}}/create-regions{{/if}}">
+
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Name: </label>
+                            <input required type="text" id="name" name="name" class="form-control" value="{{#if editMode}}{{regions.name}}{{/if}}"/>
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+
+                        {{#if editMode}} 
+                            <input type="hidden" name="regionId" value="{{regions.id}}"/>
+                        {{/if}}
+
+                        <button type="submit" class="btn btn-outline-primary">{{#if editMode}}Update{{else}}Save{{/if}}</button>
+                        <a href="/regions" class="btn btn-outline-warning">Back</a>
+
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</main>

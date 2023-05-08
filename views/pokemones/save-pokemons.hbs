@@ -1,0 +1,78 @@
+<main>
+
+    <div class="container-fluid">
+
+    <div class="row">
+        <div class="col-6 offset-3">
+
+            {{#if (Confirm hasTypes hasRegions)}}
+                <div class="card">
+
+                    <h4 class="card-header bg-dark text-white">{{#if editMode}} Edit Pokemon {{else}} Create new Pokemon {{/if}}</h4>
+                    <div class="card-body">
+
+                        {{#if editMode}}
+                            <div class="mb-3">
+                                <img class="bd-placeholder-img card-img-top img-product-size" src="{{pokemon.picture}}"/>
+                            </div>
+                        {{/if}}
+
+                        <form method="POST" action="{{#if editMode}}/edit-pokemon{{else}}/create-pokemon{{/if}}">
+
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Name: </label>
+                                <input required type="text" id="name" name="name" class="form-control" value="{{#if editMode}}{{pokemon.name}}{{/if}}"/>
+                            </div>
+                            <div class="mb-3">
+                                <label for="UrlPicture" class="form-label">URL Picture: </label>
+                                <input required type="text" id="UrlPicture" name="picture" class="form-control" value="{{#if editMode}}{{pokemon.picture}}{{/if}}"/>
+                            </div>
+                            <div class="mb-3">
+                                <label for="region" class="form-label">Region: </label>
+                                <select required name="IdRegion" id="region" class="form-select">
+                                    <option{{#if editMode}} {{else}} selected {{/if}}>Select an option</option>
+                                    {{#each regions as |Region|}}
+                                        {{#if (SameValue Region.id ../pokemon.RegionId)}}
+                                            <option selected value="{{Region.id}}">{{Region.name}}</option>
+                                        {{else}}
+                                            <option value="{{Region.id}}">{{Region.name}}</option>
+                                        {{/if}}
+                                    {{/each}}
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="primario" class="form-label">Primary type: </label>
+                                <select required name="IdPrimario" id="primario" required class="form-select">
+                                    <option {{#if editMode}} {{else}} selected {{/if}}>Select an option</option>
+                                    {{#each types as |Type|}}
+                                        {{#if (SameValue Type.id ../pokemon.TypeId)}}
+                                            <option selected value="{{Type.id}}">{{Type.name}}</option>
+                                        {{else}}
+                                            <option value="{{Type.id}}">{{Type.name}}</option>
+                                        {{/if}}
+                                    {{/each}}
+                                </select>
+                            </div>
+
+                            {{#if editMode}}
+                                <input type="hidden" name="pokemonId" value="{{pokemon.id}}"/>
+                            {{/if}}
+
+                            <button type="submit" class="btn btn-primary">{{#if editMode}}Update{{else}}Save{{/if}}</button>
+                            <a href="/pokemon" class="btn btn-warning">Back</a>
+
+
+                        </form>
+
+                    </div>
+                    <input type="hidden"/>
+                </div>
+            {{else}}
+                <h1>No Regions or Types created</h1>
+                <a href="/" class="btn btn-outline-dark">Home</a>
+            {{/if}}            
+        </div>
+    </div>
+</div>
+
+</main>

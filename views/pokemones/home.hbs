@@ -1,0 +1,66 @@
+<main class="mt-3">
+        <div class="me-2 mb-3">
+            
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-3">
+                    <div class="card">
+                        <div class="card-header fw-bold">
+                            Filters
+                        </div>
+                        <div class="card-body">
+                           <form method="POST" action="/">
+                                <div class="mb-2">
+                                    <label for="pokemon" class="form-label fw-semibold">Name:</label>
+                                    <input class="form-control" type="text" id="pokemon" name="pokemonname">
+                                </div>
+                                <div class="mt-3 mb-3">
+                                    <h6>Regions</h6>
+                                </div>
+                                <div class="mb-2 form-check form-check">
+                                    <label class="form-check-label" for="status1">All</label>
+                                    <input class="form-check-input" checked type="radio" id="status1" name="MovieGender" value="All">
+                                </div>                                
+                                {{#each regions as |Region|}}
+                                    <div class="mb-2 form-check form-check">
+                                        <label class="form-check-label" for="status1">{{Region.name}}</label>
+                                        <input class="form-check-input" type="radio" id="status1" name="MovieGender" value="{{Region.id}}">
+                                    </div>
+                                {{/each}}     
+                                <div class="btn-group mt-2">
+                                    <button type="submit" class="btn btn-dark">Filter</button>
+                                </div>                       
+                           </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    {{#if hasPokemon}}
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 mb-5">
+                        {{#each pokemons as |Pokemon|}}
+                            <div class="col">
+                                <div class="card shadow-sm">
+                                <img class="bd-placeholder-img card-img-top img-product-size" src="{{Pokemon.picture}}"/>
+                                    <div class="card-body">
+                                        <h3>{{Pokemon.name}}</h3>
+                                        <p class="card-text">{{Pokemon.Region.dataValues.name}}</p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <fieldset>
+                                                <small class="text-muted">{{Pokemon.Type.dataValues.name}}</small>                      
+                                            </fieldset>                                            
+                                        </div>
+                                    </div> 
+                                </div>
+                            </div> 
+                         {{/each}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {{else}}
+        <h1>You have no pokemon</h1>
+    {{/if}}
+
+</main>
